@@ -1,0 +1,22 @@
+DROP PROCEDURE IF EXISTS PUBLICAR;
+DELIMITER $$
+
+CREATE PROCEDURE PUBLICAR(IN FECHA DATE, IN PUBLICACION LONGTEXT, IN IDAUTOR INT, IN PERMISO VARCHAR(45))
+BEGIN
+    DECLARE IDNUEVAPUBLICACION INT DEFAULT 0;
+    
+    START TRANSACTION;
+    INSERT INTO PUBLICACION (`fPublicacion`, `contenido`) VALUES (FECHA, PUBLICACION);   
+    SET IDNUEVAPUBLICACION = LAST_INSERT_ID();
+    IF IDNUEVAPUBLICACION > 0 THEN
+    INSERT INTO PUBLICACIONAUTOR (`idPublicacion`, `idAutor`, `permiso`) VALUES (IDNUEVAPUBLICACION, IDAUTOR, PUBLICACION);
+    COMMIT;
+    ELSE
+    ROLLBACK;
+    END IF;
+END$$
+ 
+DELIMITER ;
+
+/*CALL PUBLICAR("2001-03-06", "Prueba", 4, 'todo');*/
+/*Antes comenté todo lo relativo al código para llamar al procedimiento y lo llamé desde aquí, pero tampoco dio resultado, aunque en Workbench el procedimiento funciona.*/

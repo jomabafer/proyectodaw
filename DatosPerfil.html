@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+
+<div class="main-section">
+    <div class="container">
+        <div class="main-section-data">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="main-left-sidebar">
+                        <div class="user_profile">
+                            <div class="username-dt">
+                                <?php echo $etiquetasPrevias ?>
+                                <div  class="usr-pic">
+                                    <img src="<?php echo $rutaFoto; ?>" alt="" >
+                                </div>
+                                <?php echo $etiquetasFinales ?>
+                            </div>
+
+                            <div class="user_pro_status">
+                                <br><br><br><br><br>
+                                <ul class="flw-status">
+                                    <li>
+                                        <b><?php echo $nombreApellidos; ?></b>
+                                    </li>
+                                    <li>
+                                        Correo electrónico: <b><?php echo $correoElectronico ?></b>
+                                    </li>
+                                    <li>
+                                        Fecha de nacimiento: <b><?php echo $fechaNacimiento ?></b>
+                                    </li>
+                                    <li>
+                                        Población: <b><?php echo $población ?></b>
+                                    </li>
+                                </ul>
+                            </div><!--user_pro_status end-->
+                                <?php echo $opcionesUsuario; ?>
+
+                                
+                                
+                        </div>
+                                
+                    </div><!--main-left-sidebar end-->
+                </div>
+            </div>
+        </div>
+    </div><!-- main-section-data end-->
+
+    <div class="col-lg-6">
+        <div class="main-ws-sec">
+            <div class="user-tab-sec">
+                <h3><?php echo $nombreApellidos; ?></h3> <!---Esto seguramente lo deba sacar del cuadro de datos del perfil-->
+            </div><!--user-tab-sec end-->
+        </div><!--main-ws-sec end-->
+    </div>
+</div> 
+
+<!--</div>-->
+
+
+
+
+    
+</body>
+</html>

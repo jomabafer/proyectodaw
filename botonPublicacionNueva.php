@@ -1,0 +1,1 @@
+<a id='botonAnyadir' onclick=cargar('#divAnyadir','nuevaPublicacion.php') class='btn btn-primary'>Nueva Publicación</a>

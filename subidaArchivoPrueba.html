@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+    div.fileinputs {
+        position: relative;
+    }
+    
+    div.fakefile {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        z-index: 1;
+    }
+    
+    input.file {
+        position: relative;
+        text-align: right;
+        -moz-opacity:0 ;
+        /*filter:alpha(opacity: 0);*/
+        opacity: 0;
+        z-index: 2;
+    }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+       function escribirTexto(){
+        var archivo = document.getElementById("archivo");    
+        var archivoSeleccionado = document.getElementById("archivoSeleccionado");  
+        alert(archivo.files[0].name);
+        archivoSeleccionado.innerHTML = archivo.files[0].name;
+        }
+    </script>
+</head>
+<body>
+   
+    <div class="fileinputs">
+        <input  id="archivo" type="file" class="file" onchange="escribirTexto()"/>
+        <div class="fakefile" id="fakefile">
+            <!-- <input type="hidden"/>
+            <img src="button_select.gif" /> -->
+            Cargar archivo. 
+            <div id="archivoSeleccionado"></div>
+        </div>
+        
+    </div>
+</body>
+</html>

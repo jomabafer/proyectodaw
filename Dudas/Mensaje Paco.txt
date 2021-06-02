@@ -1,0 +1,350 @@
+﻿Hola Paco, tengo varias dudas respecto a c�mo estructurar el c�digo.
+
+Recuerdo que en el proyecto final de DWEC me dijiste que hab�a que hacer uso de objetos en JS, tambi�n los estoy usando en PHP pero veo que estoy haciendo mucho uso de c�digo redundante y para mostrar mucha informaci�n estoy teniendo que usar JS para que este c�digo se encargue de mostrarla en pantalla, cuando creo que eso deber�a ser cosa del c�digo est�tico o bien de PHP. �Qu� hago para tener un c�digo m�s limpio?
+Tambi�n tengo mucho c�digo html insertado desde el javascript y me gustar�a que fuese html puro o en su defecto php, �c�mo puedo arreglar eso?
+Otro problema que tengo con un m�todo es que al ser Javascript as�ncrono, si ejecuto un m�todo para mostrar una modal, el primero se me desordena en la ejecuci�n. Los que se basan en Ajax son f�ciles de controlar pero �se no y no me apa�o con las promesas u otras formas. �Me recomiendas alg�n tutorial o algunos apuntes de alg�n profesor donde se expliquen las promesas o alguna otra soluci�n para que el c�digo se ejecute de manera s�ncrona?
+
+https://www.adictosaltrabajo.com/2017/02/09/asyncawait-en-javascript/
+https://desarrolloweb.com/articulos/1307.php
+https://valenciaplaza.com/las-ninas-de-alcasser-crimen-de-estado 00:45:06
+https://www.jose-aguilar.com/blog/como-subir-una-imagen-con-jquery-ajax-php/
+https://josegoyo.github.io/2015-11-13-envio-ajax
+https://www.anerbarrena.com/php-var_dump-4759/
+https://www.baulphp.com/php-crear-una-carpeta-sino-existe/
+https://professor-falken.com/programacion/javascript/como-obtener-la-fecha-y-hora-actuales-en-javascript/
+https://aprende-web.net/progra/ajax/ajax_10.php
+https://desarrolloweb.com/articulos/upload-archivos-ajax-jquery.html
+https://eldesvandejose.com/2016/06/09/enviar-formularios-con-ficheros-por-ajax/
+https://www.youtube.com/watch?v=etNmd5Y7Wew
+https://www.youtube.com/watch?v=5shHD7UEAg4
+http://lineadecodigo.com/php/alto-y-ancho-de-una-imagen-en-php/
+https://cybmeta.com/isset-is_null-y-empty-diferencias-y-ejemplos-de-uso
+https://www.anerbarrena.com/php-isset-4876/
+http://www.manualweb.net/html/imagenes-html/
+http://www.programasprogramacion.com/convertir_html2php.php
+https://www.youtube.com/watch?v=zRHOK6TeygM Tutorial de fazt sobre plantillas
+https://startbootstrap.com P�gina de plantillas
+https://colorlib.com/wp/bootstrap-social-network-templates/
+https://www.themede.com/download-s2-workwise-the-freelancer-and-social-networking-html-template.html
+https://themeforest.net/item/workwise-the-freelancer-and-social-networking-html-template/21647879
+https://www.templatemonster.com/es/plantillas-bootstrap/
+https://lenguajehtml.com/html/semantica/etiquetas-html-de-seccion/
+https://www.mclibre.org/consultar/htmlcss/html/html-secciones.html
+https://donnierock.com/2013/11/01/eliminar-un-directorio-y-su-contenido-en-php/
+https://programacion.net/articulo/como_eliminar_todos_los_ficheros_de_un_directorio_utilizando_php_1913
+https://tutobasico.com/actualizar-javascript/
+http://www.falconmasters.com/tutoriales/como-hacer-un-menu-desplegable/
+https://mdbootstrap.com/snippets/jquery/mdbootstrap/949080#css-tab-view
+https://es.javascript.info/import-export
+https://developer.mozilla.org/es/docs/Web/JavaScript/Guide/Modules
+http://w3.unpocodetodo.info/css3/tooltip.php
+https://www.scriptol.com/css/tooltip.php
+https://www.baulphp.com/editar-registros-con-funcion-php-y-mysql-ejemplos/
+https://www.w3schools.com/php/php_mysql_update.asp
+https://www.youtube.com/watch?v=f0Ug5G_oONg ¿Aprender float y después Flexbox y Grid en CSS es una buena idea?
+https://www.youtube.com/watch?v=WT2YwgeUuDU Flexbox Grid
+https://tutobasico.com/modificar-css-de-un-elemento-con-javascript/
+https://platzi.com/blog/local-storage-html5/
+https://developer.mozilla.org/es/docs/Web/API/Window/localStorage
+https://rolandocaldas.com/html5/localstorage-en-html5
+https://ed.team/blog/que-es-y-como-utilizar-localstorage-y-sessionstorage
+https://www.genbeta.com/desarrollo/html5-localstorage-y-eventos
+http://tutorials.jenkov.com/html5/local-storage.html#local-storage-events
+https://www.lawebera.es/como-hacer/ejemplos-css/expandir-imagen-fondo-css.php
+https://comocreartuweb.com/herramientas-utiles/enciclopedia-web/rutas-de-archivos.html
+https://norfipc.com/comandos/usar-linea-comandos-windows-7-f-i.html
+https://www.seoptimer.com/es/blog/los-tres-metodos-de-salvacion-para-adaptar-tu-web-a-moviles/
+https://www.tooltyp.com/como-adaptar-mi-web-a-las-pantallas-de-los-dispositivos-moviles/
+https://atareao.es/ubuntu/recuperar-la-contrasena-de-administrador-en-ubuntu/
+https://www.coderomeos.org/create-multi-level-drop-down-menu-with-html-and-css3
+
+
+
+Lo que puedo hacer para modificar el archivo:
+-En PHP muestro una minuatura si hay archivo.
+-A la hora de actualizar la publicación, si se detecta un archivo cargado se borra el que había
+tanto en el disco duro como en la base de datos y se carga el que se acaba de subir.
+
+
+
+Hola Paco, te voy a mostrar los cambios que he hecho en mi c�digo para evitar introducir html desde Javascript.
+
+Antes:
+-Javascript:
+function listarAmistades(idUsuario){ //La estructura de este m�todo es muy similar a la del m�todo listarPublicaciones.
+	console.log("Id del usuario que quiere ver sus amistades: "+idUsuario);
+	$.ajax({
+    async: false,
+    type: "POST",
+    dataType: "html",
+    contentType: "application/x-www-form-urlencoded",
+    url: "listarAmistades.php",
+    data: 'idUsuario='+idUsuario,
+    beforeSend: inicioEnvio,
+    success: mostrarAmistades,
+    timeout: 4000,
+    error: problemas
+  });
+  return false;
+}
+
+function mostrarAmistades(datos){ //La estructura de este m�todo es muy similar a la del m�todo mostrarPublicaciones.
+	var panelPrincipal = document.getElementById("amistades");
+	console.log("Qu� hay dentro del panel principal: "+panelPrincipal.innerHTML)
+	//panelPrincipal.innerHTML = panelPrincipal.innerHTML + "<div id='amistades'></div>";
+	var divAmistades = document.getElementById("amistades");
+	console.log("Qu� hay dentro del nuevo div: "+divAmistades.innerHTML);
+	console.log("JSON de los datos recibidos (amistades): "+datos);
+
+	console.log("Ha entrado en el estado 4");
+	divAmistades.innerHTML = divAmistades.innerHTML + "Lista de amigas y amigos:<br/>";
+	try{
+		/*La principal diferencia con el m�todo mostrarPublicaciones es que el JSON recibido corresponde a
+		un vector y no a una matriz*/
+		console.log("Se va a intentar mostrar la lista de amigos");
+		var amistades = JSON.parse(datos);
+		console.log("Amistades sin parsear: "+amistades);
+		console.log("Primera amistad sin parsear: "+amistades[0].nombre);
+		for(i=0; i<amistades.length; i++){
+			var dato = amistades[i];
+			console.log(dato);
+			console.log("amistad " + i + ": Nombre: "+dato.nombre+". Apellidos:"+ dato.apellidos +". Correo electr�nico: "+dato.correoE+". Fecha de nacimiento: "+dato.fnacimiento+". Poblaci�n: "+dato.poblacion);
+			var amistadRescatada = new usuario(dato.idUsuario,dato.nombre, dato.apellidos, dato.correoE, dato.fNacimiento, dato.poblacion, dato.tipo, dato.privacidad);
+			panelPrincipal.innerHTML = panelPrincipal.innerHTML +"<a href='detallesUsuario.php?idUsuario="+amistadRescatada.getIdUsuario()+"' onclick = 'return modal(this.href)'>"+ amistadRescatada.getNombre() + " " + amistadRescatada.getApellidos() + "</a><br/>";
+			
+		}
+	}catch(err){
+		console.log("Ha habido una excepci�n");
+		panelPrincipal.innerHTML = panelPrincipal.innerHTML + datos.responseText;
+	}
+
+}
+
+
+
+-PHP:
+
+<?php
+header('Content-type: text/html; charset=utf-8');
+require("database.php");
+require("usuario.php");
+//require("publicacion.php");
+//require("usarProcedimiento.php");
+$idUsuario = $_POST["idUsuario"];
+$consulta = new database;
+$amistades = array();
+$sql = 'select * from amistad inner join usuario on amistad.idAmigoasociado = usuario.idUsuario where amistad.idAmigo ='.$idUsuario.' order by apellidos';
+try{
+	/*Un objeto de tipo database ejecuta un m�todo para ejecutar una consulta SQL que obtiene las
+	amistades del usuario que se recibe mediante post*/
+	$resultadobusqueda = $consulta->conn->query($sql);
+	if($resultadobusqueda){
+			
+			
+		$registroAmistad = $resultadobusqueda->fetch();
+		
+		if ($registroAmistad != null){
+			while ($registroAmistad != null) {
+				$amistad = new usuario($registroAmistad[2], $registroAmistad[3], $registroAmistad[4], $registroAmistad[5], $registroAmistad[6], $registroAmistad[7], $registroAmistad[8], $registroAmistad[9]);
+				$amistades[]= $amistad;
+				$registroAmistad = $resultadobusqueda->fetch();
+				
+			}
+			//Se crea un vector con objetos de tipo usuario que se codifica mediante JSON para mandarlo por AJAX
+			$jsonAmistades = json_encode($amistades);
+			echo $jsonAmistades;
+			//echo count($amistades);
+			
+		}else{//Mensaje que se mostrar� si no se obtiene ninguna amistad.
+			echo "Parece ser que a�n no has agregado a nadie.";
+		}
+	}
+}catch(Exception $e){
+		echo $e->getMessage();
+		echo "Ha habido un error en la base de datos.";
+		die();
+	}
+?>
+
+
+
+
+Ahora:
+
+-Javascript:
+function listarAmistades(idUsuario){ //La estructura de este m�todo es muy similar a la del m�todo listarPublicaciones.
+	console.log("Id del usuario que quiere ver sus amistades: "+idUsuario);
+	$.ajax({
+    async: false,
+    type: "POST",
+    dataType: "html",
+    contentType: "application/x-www-form-urlencoded",
+    url: "listarAmistades.php",
+    data: 'idUsuario='+idUsuario,
+    beforeSend: inicioEnvio,
+    success: mostrarAmistades,
+    timeout: 4000,
+    error: problemas
+  });
+  return false;
+}
+
+function mostrarAmistades(datos){ //La estructura de este m�todo es muy similar a la del m�todo mostrarPublicaciones.
+	var panelPrincipal = document.getElementById("amistades");
+	console.log("Qu� hay dentro del panel principal: "+panelPrincipal.innerHTML)
+	//panelPrincipal.innerHTML = panelPrincipal.innerHTML + "<div id='amistades'></div>";
+	var divAmistades = document.getElementById("amistades");
+	console.log("Qu� hay dentro del nuevo div: "+divAmistades.innerHTML);
+	console.log("JSON de los datos recibidos (amistades): "+datos);
+	divAmistades.innerHTML = divAmistades.innerHTML + "Lista de amigas y amigos:<br/>";
+	panelPrincipal.innerHTML = panelPrincipal.innerHTML + datos;
+}
+
+
+<?php
+header('Content-type: text/html; charset=utf-8');
+require("database.php");
+require("usuario.php");
+$idUsuario = $_POST["idUsuario"];
+$consulta = new database;
+$amistades = array();
+$sql = 'select * from amistad inner join usuario on amistad.idAmigoasociado = usuario.idUsuario where amistad.idAmigo ='.$idUsuario.' order by apellidos';
+try{
+	/*Un objeto de tipo database ejecuta un m�todo para ejecutar una consulta SQL que obtiene las
+	amistades del usuario que se recibe mediante post*/
+	$resultadobusqueda = $consulta->conn->query($sql);
+	if($resultadobusqueda){
+			
+			
+		$registroAmistad = $resultadobusqueda->fetch();
+		
+		if ($registroAmistad != null){
+			while ($registroAmistad != null) {
+				$amistad = new usuario($registroAmistad[2], $registroAmistad[3], $registroAmistad[4], $registroAmistad[5], $registroAmistad[6], $registroAmistad[7], $registroAmistad[8], $registroAmistad[9], $registroAmistad[10]);
+				$amistades[]= $amistad;
+				$registroAmistad = $resultadobusqueda->fetch();
+				
+			}
+			for($i=0;$i<sizeof($amistades); $i++){
+				//$dato = amistades[i];
+				$amistadRescatada = $amistades[$i];
+				//var $amistadRescatada = new usuario(dato.idUsuario,dato.nombre, dato.apellidos, dato.correoE, dato.fNacimiento, dato.poblacion, dato.tipo, dato.privacidad, dato.rutaFoto);
+				echo "<a href='detallesUsuario.php?idUsuario=".$amistadRescatada->getIdUsuario()."' onclick = 'return modal(this.href)'>".$amistadRescatada->getNombre()." ".$amistadRescatada->getApellidos()."</a><br/>";
+				
+			}
+			
+		}else{//Mensaje que se mostrar� si no se obtiene ninguna amistad.
+			echo "Parece ser que a�n no has agregado a nadie.";
+		}
+	}
+}catch(Exception $e){
+		echo $e->getMessage();
+		echo "Ha habido un error en la base de datos.";
+		die();
+	}
+?>
+
+En resumen, lo que he hecho es mostrar directamente desde PHP la informaci�n.
+
+En el caso de la creaci�n de publicaciones o registro de usuarios s� que sigo usando una l�gica similar al c�digo del antes, si bien la informaci�n introducida pasa del Javascript al PHP.
+
+
+Hola Paco, estoy usando una plantilla para dar forma al aspecto visual de mi aplicación, ya que en este aspecto mi creatividad es limitada. La estoy modificando bastante de forma que quede a mi gusto y sobre todo necesidades, aún así me gustaría preguntarte si puede traerme problemas el uso de la plantilla, en el caso de las clases que aparecen, mi intención es modificar el nombre de las mismas.
+
+
+
+Hola Paco, te paso los vídeos con los problemas que tengo con la aplicación.
+
+(Vídeo Opciones abiertas por defecto-2021-03-21_18.42.48) Nada más iniciar, el menú de administración me sale abierto por defecto y no soy capaz de iniciar sesión con ese menú cerrado. Aún peor, si uso Chrome no se me muestra la lista de personas registradas. Nota: Tengo que arreglar la disposición de los elementos que se ven, pues algunos están superpuestos y otros no guardan los saltos de línea necesarios pero eso lo intentaré hacer por mi cuenta; también quiero intentar usar el cuadro de debajo de cada publicación, que por ahora se repite puesto que lo he copiado de una plantilla pero mi intención es darle alguna funcionalidad.
+
+(Vídeo Chrome vacío-2021-03-21_18.54.11) En Chrome también aparecen abiertas por defecto, pero no se muestra ninguna lista, que es mostrada por la línea que comento en el editor de código y, aunque en Firefox su presencia o bien su falta se ven reflejadas, en Chrome se comprueba que no. ¿Por qué en Firefox se muestra el degradado repetido y en Chrome se ve sólo una vez? Probablemente elimine ese degradado pero no me gusta nada que se vea así.
+
+(Vídeo Petición de amistad) Cuando quiero pedir amistad a una persona, al hacer clic sobre el enlace, se pide la amistad pero no cambia lo que se muestra en pantalla, tengo que recargar la página, lo cual es absurdo desde el punto de vista funcional. Al retirar la petición todo funciona correctamente. Esto se ve así de feo porque aún no le he cambiado el aspecto visual.
+
+Los archivos nuevaPublicacion.php y nuevaPublicacionBackend.php creo que ya no tienen uso, pero los he dejado por si acaso se siguen utilizando aún en algo, ya los sustituiré. Espero no haber borrado nada que sirva, ya que había muchos archivos de prueba o antiguos que he quitado.
+
+
+
+
+Hola Paco, necesito obtener un objeto desde PHP hacia Javascript y como es lógico, para ello debo usar AJAX. El problema está en que no sé cómo salir del AJAX para que ese objeto se guarde en una variable más del código de la función. Quizás no me haya explicado muy bien, así que te pongo un esquema de lo que quiero hacer.
+
+function manipulaObjeto(){
+    var miObjeto = getObjeto();
+    Sigue el código para manipular el objeto
+}
+
+function getObjeto(){
+    $.ajax({
+        Todo lo que se hace en una petición AJAX con jQuery y si no, mediante AJAX sin el framework.
+        En la función que se ejecuta cuando todo va bien convierto el JSON recibido en un objeto mediante la función parse.
+    });
+    return objeto; //¿Cómo logro sacar el objeto de (la función a la que llama) $.ajax hasta aquí?
+}
+
+
+
+
+
+Índice.
+
+Introducción.
+
+Motivación del proyecto.
+
+Objetivos.
+
+Planificación.
+
+Descripción del proyecto.
+
+Comparativa de herramientas.
+
+Herramientas utilizadas.
+
+Resultado obtenido.
+
+Conclusiones y trabajos futuros.
+
+Bibliografía.
+
+
+
+
+CheatSheet:
+
+https://hackerthemes.com/bootstrap-cheatsheet/#align-content-center
+
+
+Plantillas de Elementos de Bootstrap con selectores:
+
+https://hackerthemes.com/bootstrap-themes/
+
+
+Generador de Contenedores Responsive:
+
+http://shoelace.io/
+
+https://summernote.org/
+https://www.cssscript.com/tag/wysiwyg-editor/
+https://htmlg.com/html-editor/
+http://selfcss.org/
+https://www.hostinet.com/formacion/diseno-web/3-editores-html-visuales-wysiwyg-y-gratuitos-para-2020/
+https://vinkula.com/crear-botones-personalizados-con-html5-y-css3/
+https://desarrolloweb.com/manuales/30
+https://francescricart.com/guia-rapida-para-crear-botones-personalizados-con-css/
+https://www.liewebs.com/utilidades-y-herramientas-web/generador-de-botones-online-para-el-diseno-y-desarrollo-web/
+https://www.liewebs.com/DESCARGAS/software/King_Button_Maker/
+https://www.liewebs.com/DESCARGAS/software/css3_button_generator/
+https://www.liewebs.com/DESCARGAS/software/button_generator/
+https://www.it-swarm-es.com/es/html/como-dar-espacio-entre-los-botones-usando-bootstrap/1049839335/
+https://blog.hubspot.es/marketing/fondos-para-paginas-web
+http://www.dinpattern.com/category/patterns/
+http://backgroundlabs.com/backgrounds/most-popular/page/2/
+http://backgroundlabs.com/item/clouds-seamless-background/
+http://backgroundlabs.com/wp-content/uploads/2013/02/clouds-seamless-background.jpg
+http://backgroundlabs.com/wp-content/uploads/2013/05/stylish-floral-pattern.png
+https://www.lawebera.es/como-hacer/ejemplos-css/expandir-imagen-fondo-css.php
+https://www.tutorialesprogramacionya.com/cssya/temarios/descripcion.php?cod=23&punto=19&inicio=10
+https://www.iteramos.com/pregunta/1767/-estirar-y-escalar-una-imagen-css-en-el-fondo---solo-con-css-
+https://professor-falken.com/programacion/css/como-distribuir-horizontal-y-uniformemente-los-elementos-contenidos-en-un-div/
+https://jsfiddle.net/professorFalken/otzynx9a/
